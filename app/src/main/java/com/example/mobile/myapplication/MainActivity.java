@@ -1,6 +1,7 @@
 package com.example.mobile.myapplication;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,10 +19,10 @@ import database.DatabaseHelper;
 import model.Restaurant;
 
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener {
+public class MainActivity extends ActionBarActivity {
 
     /*Variables*/
-        EditText name, address, id;
+        EditText name, address, id, description, pnumber;
         Button addButton, deleteButton;
         TextView textView;
         List<Restaurant> list = new ArrayList<Restaurant>();
@@ -68,20 +69,21 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         name = (EditText) findViewById(R.id.nameTxt);
         address = (EditText) findViewById(R.id.addressTxt);
         id = (EditText) findViewById(R.id.idTxt);
+        description = (EditText)findViewById(R.id.descripTxt);
+        pnumber = (EditText)findViewById(R.id.pnumberTxt);
         addButton = (Button) findViewById(R.id.addBtn);
         deleteButton = (Button) findViewById(R.id.deleteBtn);
         textView = (TextView) findViewById(R.id.restaurantTv);
-        addButton.setOnClickListener(this);
-        deleteButton.setOnClickListener(this);
+
     }
 
     protected void fillDb(){
         Restaurant restaurant = new Restaurant();
-        restaurant.name = "BBT";
-        restaurant.address = "Prol. Montejo";
+        restaurant.setmName("BBT");
+        restaurant.setmAddress("Prol. Montejo");
         db.addRestaurant(restaurant);
-        restaurant.name = "T.G.I Fridays";
-        restaurant.address = "Prol Montejo";
+        restaurant.setmName("T.G.I Fridays");
+        restaurant.setmAddress("Prol Montejo");
         db.addRestaurant(restaurant);
         list = db.getAllRestaurantList();
     }
@@ -89,31 +91,40 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private void print(List<Restaurant> list) {
         String value = "";
         for(Restaurant rest : list){
-            value = value+rest.id+"- Name: "+rest.name+" || Address: "+rest.address+"\n";
+            value = value+rest.getmId()+"- Name: "+rest.getmName()+" || Address: "+rest.getmAddress()+" || Desc: "+rest.getmDescription()+" || Number: "+rest.getmPhoneNumber()+"\n";
         }
         textView.setText(value);
     }
 
 
-
-    @Override
-    public void onClick(View v) {
-        // TODO Auto-generated method stub
-        if(v == findViewById(R.id.deleteBtn)){
-            textView.setText("");
-            String restaurant_id = id.getText().toString();
-            db.deleteEntry(Integer.parseInt(restaurant_id));
-            list = db.getAllRestaurantList();
-            print(list);
-        }
-        if(v == findViewById(R.id.addBtn)){
-            textView.setText("");
-            Restaurant restaurant = new Restaurant();
-            restaurant.name = name.getText().toString();
-            restaurant.address = address.getText().toString();
-            db.addRestaurant(restaurant);
-            list = db.getAllRestaurantList();
-            print(list);
-        }
+    public void deleteBtnOnClick(View view){
+        textView.setText("");
+        String restaurant_id = id.getText().toString();
+        db.deleteEntry(Integer.parseInt(restaurant_id));
+        list = db.getAllRestaurantList();
+        print(list);
     }
+
+    public void addBtnOnClick(View view){
+        textView.setText("");
+        Restaurant restaurant = new Restaurant();
+        restaurant.setmName(name.getText().toString());
+        restaurant.setmAddress(address.getText().toString());
+        restaurant.setmDescription(description.getText().toString());
+        restaurant.setmPhoneNumber(pnumber.getText().toString());
+
+        db.addRestaurant(restaurant);
+        list = db.getAllRestaurantList();
+        print(list);
+    }
+
+    public void editBtnOnClick(View view){
+        Intent intent = new Intent(this, EditActivity.class);
+        EditText editText = (EditText) findViewById(R.id.editId);
+        String id = editText.getText().toString();
+        intent.putExtra("rcvId", id);
+        startActivity(intent);
+    }
+
+
 }

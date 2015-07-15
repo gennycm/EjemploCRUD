@@ -28,7 +28,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // All Keys used in table
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
-    private static final String KEY_ADDRESS = "phone_number";
+    private static final String KEY_ADDRESS = "address";
+    private static final String KEY_DESCR = "description";
+    private static final String KEY_PNUMBER = "phone_number";
 
     public static String TAG = "tag";
 
@@ -41,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_RESTAURANTS = "CREATE TABLE "
             + TABLE_RESTAURANTS + "(" + KEY_ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + " TEXT,"
-            + KEY_ADDRESS + " TEXT );";
+            + KEY_ADDRESS + " TEXT," + KEY_DESCR +" TEXT," + KEY_PNUMBER + " TEXT);";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -64,8 +66,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Creating content values
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, restaurant.name);
-        values.put(KEY_ADDRESS, restaurant.address);
+        values.put(KEY_NAME, restaurant.getmName());
+        values.put(KEY_ADDRESS, restaurant.getmAddress());
+        values.put(KEY_DESCR, restaurant.getmDescription());
+        values.put(KEY_PNUMBER, restaurant.getmPhoneNumber());
 
         // insert row in restaurants table
 
@@ -79,12 +83,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Creating content values
         ContentValues values = new ContentValues();
-        values.put(KEY_NAME, restaurant.name);
-        values.put(KEY_ADDRESS, restaurant.address);
+        values.put(KEY_NAME, restaurant.getmName());
+        values.put(KEY_ADDRESS, restaurant.getmAddress());
+        values.put(KEY_DESCR, restaurant.getmDescription());
+        values.put(KEY_PNUMBER, restaurant.getmPhoneNumber());
 
         // update row in restaurants table base on restaurants.is value
         return db.update(TABLE_RESTAURANTS, values, KEY_ID + " = ?",
-                new String[] { String.valueOf(restaurant.id) });
+                new String[] { String.valueOf(restaurant.getmId()) });
     }
 
     public void deleteEntry(long id) {
@@ -109,9 +115,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             c.moveToFirst();
 
         Restaurant restaurant = new Restaurant();
-        restaurant.id = c.getInt(c.getColumnIndex(KEY_ID));
-        restaurant.address = c.getString(c.getColumnIndex(KEY_ADDRESS));
-        restaurant.name = c.getString(c.getColumnIndex(KEY_NAME));
+        restaurant.setmId(c.getInt(c.getColumnIndex(KEY_ID)));
+        restaurant.setmName(c.getString(c.getColumnIndex(KEY_NAME)));
+        restaurant.setmAddress(c.getString(c.getColumnIndex(KEY_ADDRESS)));
+        restaurant.setmDescription(c.getString(c.getColumnIndex(KEY_DESCR)));
+        restaurant.setmPhoneNumber(c.getString(c.getColumnIndex(KEY_PNUMBER)));
 
         return restaurant;
     }
@@ -129,14 +137,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
 
-                Restaurant restaurants = new Restaurant();
-                restaurants.id = c.getInt(c.getColumnIndex(KEY_ID));
-                restaurants.address = c.getString(c
-                        .getColumnIndex(KEY_ADDRESS));
-                restaurants.name = c.getString(c.getColumnIndex(KEY_NAME));
+                Restaurant restaurant = new Restaurant();
+                restaurant.setmId(c.getInt(c.getColumnIndex(KEY_ID)));
+                restaurant.setmAddress(c.getString(c.getColumnIndex(KEY_ADDRESS)));
+                restaurant.setmName(c.getString(c.getColumnIndex(KEY_NAME)));
+                restaurant.setmDescription(c.getString(c.getColumnIndex(KEY_DESCR)));
+                restaurant.setmPhoneNumber(c.getString(c.getColumnIndex(KEY_PNUMBER)));
 
                 // adding to Restaurant list
-                restaurantsArrayList.add(restaurants);
+                restaurantsArrayList.add(restaurant);
             } while (c.moveToNext());
         }
 
