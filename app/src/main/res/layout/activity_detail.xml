@@ -14,30 +14,91 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.antonioleiva.materialeverywhere.DetailActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:transitionName="photo_hero"
-        android:layout_below="@id/toolbar"
-        android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@+id/r_id"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
 
     <TextView
-        android:id="@+id/text"
-        android:text="@string/hello_world"
+        android:id="@+id/r_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image"/>
+        android:textSize="45sp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/r_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="34sp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp">
+
+        <TextView
+            android:id="@+id/r_phone"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/r_address"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp">
+
+        <Button
+            android:id="@+id/upd_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Editar"
+            android:layout_weight="1"
+            android:onClick="edit"
+            />
+
+        <Button
+            android:id="@+id/del_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Eliminar"
+            android:layout_weight="1"
+            android:onClick="delete"/>
+
+    </LinearLayout>
+
+</LinearLayout>

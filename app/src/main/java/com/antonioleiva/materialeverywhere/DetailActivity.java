@@ -25,21 +25,39 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import database.DatabaseHelper;
 
 
 public class DetailActivity extends BaseActivity {
 
-    public static final String EXTRA_IMAGE = "DetailActivity:image";
+    private TextView mRId, mRName, mRDescription, mRPhone, mRAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupElements();
 
-        ImageView image = (ImageView) findViewById(R.id.image);
-        ViewCompat.setTransitionName(image, EXTRA_IMAGE);
-        Picasso.with(this).load(getIntent().getStringExtra(EXTRA_IMAGE)).into(image);
+    }
+
+    private void setupElements(){
+        Intent intent = getIntent();
+        // Initialize
+        mRId = (TextView)findViewById(R.id.r_id);
+        mRName = (TextView)findViewById(R.id.r_name);
+        mRDescription = (TextView)findViewById(R.id.r_description);
+        mRPhone = (TextView)findViewById(R.id.r_phone);
+        mRAddress = (TextView)findViewById(R.id.r_address);
+        // Set content
+        mRId.setText(intent.getStringExtra("r_id"));
+        mRName.setText(intent.getStringExtra("r_name"));
+        mRDescription.setText(intent.getStringExtra("r_description"));
+        mRPhone.setText(intent.getStringExtra("r_phone"));
+        mRAddress.setText(intent.getStringExtra("r_address"));
     }
 
     @Override protected int getLayoutResource() {
@@ -54,24 +72,35 @@ public class DetailActivity extends BaseActivity {
         return true;
     }
 
+    public void showToast(MenuItem menuItem){
+        Toast t = Toast.makeText(this,"cliqueado menuitem en detalles",Toast.LENGTH_SHORT);
+        t.show();
+    }
+
+    public void delete(View v){
+        String name = mRName.getText().toString();
+        Long id = Long.valueOf(mRId.getText().toString()).longValue();
+        HomeActivity.deleteEntry(id);
+        Toast.makeText(this,"Eliminado el restaurante " + name,Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    public void edit(View v){
+        Intent i = new Intent(this,EditActivity.class);
+        i.putExtra("rcvId",mRId.getText().toString());
+        startActivity(i);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.home) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public static void launch(BaseActivity activity, View transitionView, String url) {
-        ActivityOptionsCompat options =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        activity, transitionView, EXTRA_IMAGE);
-        Intent intent = new Intent(activity, DetailActivity.class);
-        intent.putExtra(EXTRA_IMAGE, url);
-        ActivityCompat.startActivity(activity, intent, options.toBundle());
-    }
 }

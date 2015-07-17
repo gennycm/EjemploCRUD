@@ -44,6 +44,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomeActivity"/>
         </activity>
+        <activity
+            android:name=".EditActivity"
+            android:label="Editar" >
+        </activity>
     </application>
 
 </manifest>
