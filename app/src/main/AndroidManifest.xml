@@ -48,6 +48,10 @@
             android:name=".EditActivity"
             android:label="Editar" >
         </activity>
+        <activity
+            android:name=".NewActivity"
+            android:label="Nuevo restaurant" >
+        </activity>
     </application>
 
 </manifest>

@@ -44,14 +44,59 @@
 
     </RelativeLayout>
 
-    <ListView
+    <LinearLayout
+        android:id="@+id/barralado"
         android:layout_width="260dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/windowBackgroundColor"
+        android:orientation="vertical"
+        android:background="@color/windowBackgroundColor">
 
-        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desarrollado por:"
+            android:textSize="32sp"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="48dp"/>
 
-        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="72dp"
+            android:text="Genny Centeno"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="72dp"
+            android:text="Javier Ojeda"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="72dp"
+            android:text="Giselle Rodriguez"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="72dp"
+            android:text="Nàire Tnl Selene"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="72dp"
+            android:text="Agregar nombre"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="72dp"
+            android:text="Agregar nombre"/>
+
+    </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

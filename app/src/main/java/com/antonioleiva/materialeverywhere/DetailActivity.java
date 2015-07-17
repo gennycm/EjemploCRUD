@@ -72,11 +72,6 @@ public class DetailActivity extends BaseActivity {
         return true;
     }
 
-    public void showToast(MenuItem menuItem){
-        Toast t = Toast.makeText(this,"cliqueado menuitem en detalles",Toast.LENGTH_SHORT);
-        t.show();
-    }
-
     public void delete(View v){
         String name = mRName.getText().toString();
         Long id = Long.valueOf(mRId.getText().toString()).longValue();
@@ -87,7 +82,12 @@ public class DetailActivity extends BaseActivity {
 
     public void edit(View v){
         Intent i = new Intent(this,EditActivity.class);
-        i.putExtra("rcvId",mRId.getText().toString());
+        i.putExtra("rcvId", mRId.getText().toString());
+        startActivity(i);
+    }
+
+    public void newclick(MenuItem menuItem){
+        Intent i = new Intent(this,NewActivity.class);
         startActivity(i);
     }
 

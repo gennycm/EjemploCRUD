@@ -140,9 +140,9 @@ public class HomeActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void showToast(MenuItem menuItem){
-        Toast t = Toast.makeText(this,"cliqueado menuitem en home",Toast.LENGTH_SHORT);
-        t.show();
+    public void newclick(MenuItem menuItem){
+        Intent i = new Intent(this,NewActivity.class);
+        startActivity(i);
     }
 
     private static class GridViewAdapter extends BaseAdapter {
