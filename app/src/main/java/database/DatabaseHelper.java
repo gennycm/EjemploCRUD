@@ -151,8 +151,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return restaurantsArrayList;
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/jojeda
 }
