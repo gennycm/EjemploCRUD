@@ -31,43 +31,69 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:textAppearance="?android:attr/textAppearanceLarge"
+=======
+            android:textSize="45sp"
+>>>>>>> origin/jojeda
             android:text="Datos del restaurante"
             android:id="@+id/textView" />
 
         <EditText
             android:layout_width="290dp"
+<<<<<<< HEAD
             android:layout_height="wrap_content"
             android:id="@+id/nameTxt"
             android:layout_row="1"
             android:layout_column="1"
+=======
+            android:layout_height="48dp"
+            android:id="@+id/nameTxt"
+>>>>>>> origin/jojeda
             android:hint="Nombre del lugar"
             android:layout_gravity="center_horizontal" />
 
         <EditText
+<<<<<<< HEAD
             android:layout_width="289dp"
             android:layout_height="wrap_content"
             android:id="@+id/addressTxt"
             android:layout_row="2"
             android:layout_column="1"
+=======
+            android:layout_width="290dp"
+            android:layout_height="48dp"
+            android:id="@+id/addressTxt"
+>>>>>>> origin/jojeda
             android:hint="Dirección"
             android:layout_gravity="center_horizontal" />
 
         <EditText
+<<<<<<< HEAD
             android:layout_width="274dp"
             android:layout_height="wrap_content"
+=======
+            android:layout_width="290dp"
+            android:layout_height="48dp"
+>>>>>>> origin/jojeda
             android:id="@+id/descripTxt"
             android:hint="Descripción"
             android:layout_gravity="center_horizontal" />
 
         <EditText
+<<<<<<< HEAD
             android:layout_width="282dp"
             android:layout_height="wrap_content"
+=======
+            android:layout_width="290dp"
+            android:layout_height="48dp"
+>>>>>>> origin/jojeda
             android:id="@+id/pnumberTxt"
             android:hint="Telefono"
             android:layout_gravity="center_horizontal" />
 
         <Button
+<<<<<<< HEAD
             android:layout_width="289dp"
             android:layout_height="wrap_content"
             android:text="Actualizar"
@@ -78,6 +104,14 @@
             android:layout_above="@+id/idTxt"
             android:layout_alignRight="@+id/idTxt"
             android:layout_alignEnd="@+id/idTxt"
+=======
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Actualizar"
+            android:id="@+id/updateBtn"
+            android:layout_marginTop="16dp"
+            android:onClick="updateBtnOnClick"
+>>>>>>> origin/jojeda
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 

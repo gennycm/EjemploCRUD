@@ -1,6 +1,10 @@
 # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
+<<<<<<< HEAD
 # in C:\Users\Lenova-i7quad\AppData\Local\Android\sdk/tools/proguard/proguard-android.txt
+=======
+# in /Applications/Android Studio 2.app/sdk/tools/proguard/proguard-android.txt
+>>>>>>> origin/jojeda
 # You can edit the include path and order by changing the proguardFiles
 # directive in build.gradle.
 #
